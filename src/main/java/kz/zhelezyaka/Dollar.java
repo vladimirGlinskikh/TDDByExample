@@ -1,14 +1,12 @@
 package kz.zhelezyaka;
 
-import java.util.Objects;
-
 public class Dollar extends Money {
 
-    public Dollar(int amount) {
-        this.amount = amount;
+    public Dollar(int amount, String currency) {
+        super(amount, currency);
     }
 
     public Money times(int i) {
-        return new Dollar(amount * i);
+        return Money.dollar(amount * i);
     }
 }
