@@ -2,7 +2,7 @@ package kz.zhelezyaka;
 
 import java.util.Objects;
 
-public abstract class Money {
+public class Money {
     protected int amount;
     protected String currency;
 
@@ -15,8 +15,6 @@ public abstract class Money {
         return currency;
     }
 
-    public abstract Money times(int multiplier);
-
     public static Money dollar(int amount) {
         return new Dollar(amount, "USD");
     }
@@ -25,16 +23,22 @@ public abstract class Money {
         return new Franc(amount, "FRK");
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Money money = (Money) o;
-        return amount == money.amount;
+    public Money times(int i) {
+        return new Money(amount * i, this.currency);
     }
 
     @Override
-    public int hashCode() {
-        return Objects.hash(amount);
+    public boolean equals(Object o) {
+        Money money = (Money) o;
+        return amount == money.amount
+                && Objects.equals(this.currency, money.currency);
+    }
+
+    @Override
+    public String toString() {
+        return "Money{" +
+                "amount=" + amount +
+                ", currency='" + currency + '\'' +
+                '}';
     }
 }
