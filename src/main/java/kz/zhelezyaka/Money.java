@@ -2,7 +2,7 @@ package kz.zhelezyaka;
 
 import java.util.Objects;
 
-public class Money {
+public class Money implements Expression{
     protected int amount;
     protected String currency;
 
@@ -25,6 +25,10 @@ public class Money {
 
     public Money times(int i) {
         return new Money(amount * i, this.currency);
+    }
+
+    public Expression plus(Money added) {
+        return new Money(amount + added.amount, currency);
     }
 
     @Override
