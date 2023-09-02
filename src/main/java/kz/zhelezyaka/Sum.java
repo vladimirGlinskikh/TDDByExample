@@ -19,6 +19,10 @@ public class Sum implements Expression {
 
     @Override
     public Expression plus(Expression addend) {
-        return null;
+        return new Sum(this, addmend);
+    }
+
+    public Expression times(int i) {
+        return new Sum(augmend.times(i), addmend.times(i));
     }
 }
