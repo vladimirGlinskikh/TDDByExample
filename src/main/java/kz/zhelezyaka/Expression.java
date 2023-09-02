@@ -1,5 +1,7 @@
 package kz.zhelezyaka;
 
 public interface Expression {
-    Money reduce(String to);
+    default Money reduce(Bank bank, String to) {
+        return null;
+    }
 }
