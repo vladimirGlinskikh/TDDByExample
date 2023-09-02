@@ -23,17 +23,18 @@ public class Money implements Expression {
         return new Money(amount, "FRK");
     }
 
-    public Money times(int i) {
+    public Expression times(int i) {
         return new Money(amount * i, this.currency);
-    }
-
-    public Expression plus(Money addend) {
-        return new Sum(this, addend);
     }
 
     @Override
     public Money reduce(Bank bank, String to) {
         return new Money(amount / bank.rate(this.currency, to), to);
+    }
+
+    @Override
+    public Expression plus(Expression addend) {
+        return new Sum(this, addend);
     }
 
     @Override
