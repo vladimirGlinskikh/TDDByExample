@@ -1,10 +1,15 @@
 package kz.zhelezyaka;
 
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.*;
 
 class GreetingTest {
-   private Greeting greeting;
+
+    @BeforeAll
+    public static void beforeClass() {
+        System.out.println("Before - I am only called once!");
+    }
+
+    private Greeting greeting;
 
     @BeforeEach
     void setUp() {
@@ -20,5 +25,15 @@ class GreetingTest {
     @Test
     void testHelloTDD() {
         System.out.println(greeting.helloTDD("Vladimir from TDD"));
+    }
+
+    @AfterEach
+    void tearDown() {
+        System.out.println("In After Each...");
+    }
+
+    @AfterAll
+    public static void afterClass() {
+        System.out.println("After - I am only called once!");
     }
 }
